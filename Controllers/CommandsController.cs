@@ -13,14 +13,9 @@ namespace Commands.Controllers
     // Implements ControllerBase since view support is not needed, otherwise use Controller interface
     public class CommandsController : ControllerBase
     {
-        // private readonly ILogger<WeatherForecastController> _logger;
-
-        // public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        // {
-        //     _logger = logger;
-        // }
         private readonly ICommandsRepo _repository;
 
+        //Dependency injection -> recieves an instance of the repo interface to the controller when the interface is requested
         public CommandsController(ICommandsRepo repository)
         {
             _repository = repository;
@@ -29,7 +24,7 @@ namespace Commands.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Command>> GetAllCommands()
         {
-            var commandItems = _repository.GetAppCommands();
+            var commandItems = _repository.GetAllCommands();
 
             return Ok(commandItems);
         }
@@ -37,8 +32,15 @@ namespace Commands.Controllers
         [HttpGet("{id}")]
         public ActionResult<Command> GetCommandByID(int id)
         {
-            var commandItem = _repository.GetCommandById(id);
-            return Ok(commandItem);
+            try
+            {
+                var commandItem = _repository.GetCommandById(id);
+                return Ok(commandItem);
+            }
+            catch
+            {
+                return NotFound("Command not found");
+            }
         }
     }
 }

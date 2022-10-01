@@ -6,7 +6,7 @@ namespace Commands.Data
 {
     public class MockCommandsRepo : ICommandsRepo
     {
-        public IEnumerable<Command> GetAppCommands()
+        public IEnumerable<Command> GetAllCommands()
         {
             // Initialize a list of commands
             var commands = new List<Command>

@@ -11,7 +11,7 @@ namespace Commands.Data
     {
 
         // Return a list of all commands, hence enumerable to support iteration
-        IEnumerable<Command> GetAppCommands();
+        IEnumerable<Command> GetAllCommands();
 
         // Return a single command given an id
         Command GetCommandById(int id);

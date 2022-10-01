@@ -16,7 +16,8 @@ builder.Services.AddDbContext<CommandsContext>(opt => opt.UseNpgsql(builder.Conf
 //Dependacy injection - design pattern to seperate the creation of an object from its use -> decoupling
 //Service container provides an instance of the repo interface to the controller when the interface is requested
 //Implementation only has to be changed in one place.
-builder.Services.AddScoped<ICommandsRepo, MockCommandsRepo>();
+builder.Services.AddScoped<ICommandsRepo, SqlCommandsRepo>();
+// builder.Services.AddScoped<ICommandsRepo, MockCommandsRepo>();
 
 var app = builder.Build();
 
