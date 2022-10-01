@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 using Commands.Models;
 using Commands.Data;
+using Commands.Dtos;
 
 namespace Commands.Controllers
 {
@@ -14,33 +16,36 @@ namespace Commands.Controllers
     public class CommandsController : ControllerBase
     {
         private readonly ICommandsRepo _repository;
+        private readonly IMapper _mapper;
 
         //Dependency injection -> recieves an instance of the repo interface to the controller when the interface is requested
-        public CommandsController(ICommandsRepo repository)
+        public CommandsController(ICommandsRepo repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Command>> GetAllCommands()
+        public ActionResult<IEnumerable<CommandReadDto>> GetAllCommands()
         {
             var commandItems = _repository.GetAllCommands();
 
-            return Ok(commandItems);
+            // Map the Command model to an IEnumerable of Read DTOs
+            return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(commandItems));
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Command> GetCommandByID(int id)
+        public ActionResult<CommandReadDto> GetCommandByID(int id)
         {
-            try
+
+            var commandItem = _repository.GetCommandById(id);
+            if (commandItem == null)
             {
-                var commandItem = _repository.GetCommandById(id);
-                return Ok(commandItem);
+                // Map the Command model to the Read DTO
+                return Ok(_mapper.Map<CommandReadDto>(commandItem));
             }
-            catch
-            {
-                return NotFound("Command not found");
-            }
+            return NotFound(new { error = new { code = "404 Not Found", message = "Command not found" } });
+
         }
     }
 }

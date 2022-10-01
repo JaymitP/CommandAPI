@@ -10,6 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// AutoMapper is available to the entire application through dependency injection
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 // Configure the database context for dependency injection -> adds the context to the container
 builder.Services.AddDbContext<CommandsContext>(opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("CommandsConnection")));
 
@@ -17,6 +20,7 @@ builder.Services.AddDbContext<CommandsContext>(opt => opt.UseNpgsql(builder.Conf
 //Service container provides an instance of the repo interface to the controller when the interface is requested
 //Implementation only has to be changed in one place.
 builder.Services.AddScoped<ICommandsRepo, SqlCommandsRepo>();
+
 // builder.Services.AddScoped<ICommandsRepo, MockCommandsRepo>();
 
 var app = builder.Build();

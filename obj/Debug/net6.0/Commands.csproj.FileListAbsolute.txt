@@ -33,3 +33,5 @@ C:\Users\Jaymit\Documents\ReactApps\Commands\bin\Debug\net6.0\Microsoft.EntityFr
 C:\Users\Jaymit\Documents\ReactApps\Commands\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
 C:\Users\Jaymit\Documents\ReactApps\Commands\bin\Debug\net6.0\Npgsql.dll
 C:\Users\Jaymit\Documents\ReactApps\Commands\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\Jaymit\Documents\ReactApps\Commands\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\Jaymit\Documents\ReactApps\Commands\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

@@ -14,6 +14,6 @@ namespace Commands.Data
         IEnumerable<Command> GetAllCommands();
 
         // Return a single command given an id
-        Command GetCommandById(int id);
+        Command? GetCommandById(int id);
     }
 }
