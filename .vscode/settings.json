@@ -1,0 +1,36 @@
+{
+  "dataworkspace.excludedProjects": ["Commands/Commands.sqlproj"],
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "CommandsAPI",
+      "database": "CommandsAPI",
+      "username": "postgres",
+      "password": "14welcome"
+    },
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "askForPassword": true,
+      "driver": "PostgreSQL",
+      "name": "CommandsAPI",
+      "database": "CommandsAPI",
+      "username": "postgres"
+    },
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "database": "commandsapi",
+      "username": "postgres",
+      "password": "14welcome",
+      "name": "CommandsAPI",
+      "group": "Server"
+    }
+  ]
+}

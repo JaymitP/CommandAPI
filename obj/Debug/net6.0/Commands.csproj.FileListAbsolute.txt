@@ -25,3 +25,11 @@ C:\Users\Jaymit\Documents\ReactApps\Commands\obj\Debug\net6.0\refint\Commands.dl
 C:\Users\Jaymit\Documents\ReactApps\Commands\obj\Debug\net6.0\Commands.pdb
 C:\Users\Jaymit\Documents\ReactApps\Commands\obj\Debug\net6.0\Commands.genruntimeconfig.cache
 C:\Users\Jaymit\Documents\ReactApps\Commands\obj\Debug\net6.0\ref\Commands.dll
+C:\Users\Jaymit\Documents\ReactApps\Commands\bin\Debug\net6.0\Humanizer.dll
+C:\Users\Jaymit\Documents\ReactApps\Commands\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Jaymit\Documents\ReactApps\Commands\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Jaymit\Documents\ReactApps\Commands\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Jaymit\Documents\ReactApps\Commands\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Jaymit\Documents\ReactApps\Commands\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Jaymit\Documents\ReactApps\Commands\bin\Debug\net6.0\Npgsql.dll
+C:\Users\Jaymit\Documents\ReactApps\Commands\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll

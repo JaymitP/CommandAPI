@@ -1,3 +1,6 @@
+using Commands.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,14 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Configure the database context for dependency injection -> adds the context to the container
+builder.Services.AddDbContext<CommandsContext>(opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("CommandsConnection")));
+
+//Dependacy injection - design pattern to seperate the creation of an object from its use -> decoupling
+//Service container provides an instance of the repo interface to the controller when the interface is requested
+//Implementation only has to be changed in one place.
+builder.Services.AddScoped<ICommandsRepo, MockCommandsRepo>();
 
 var app = builder.Build();
 

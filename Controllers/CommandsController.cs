@@ -19,8 +19,12 @@ namespace Commands.Controllers
         // {
         //     _logger = logger;
         // }
+        private readonly ICommandsRepo _repository;
 
-        private readonly MockCommandsRepo _repository = new MockCommandsRepo();
+        public CommandsController(ICommandsRepo repository)
+        {
+            _repository = repository;
+        }
 
         [HttpGet]
         public ActionResult<IEnumerable<Command>> GetAllCommands()
