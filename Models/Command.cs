@@ -12,7 +12,7 @@ namespace Commands.Models
         [MaxLength(250)]
         public string HowTo { get; set; } = string.Empty;
 
-
+        [Required]
         public string Line { get; set; } = string.Empty;
 
         [Required]

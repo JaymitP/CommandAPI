@@ -4,6 +4,8 @@ using Commands.Models;
 using Commands.Data;
 using Commands.Dtos;
 
+
+// Controller is used to handle HTTP requests and responses. Also accesses the repository.
 namespace Commands.Controllers
 {
 
@@ -15,26 +17,29 @@ namespace Commands.Controllers
     // Implements ControllerBase since view support is not needed, otherwise use Controller interface
     public class CommandsController : ControllerBase
     {
+
         private readonly ICommandsRepo _repository;
+        // Auto Mapper is used to map the DTO to the model or vice versa
         private readonly IMapper _mapper;
 
-        //Dependency injection -> recieves an instance of the repo interface to the controller when the interface is requested
+        //Dependency injection -> recieves an instance of the repo interface and AutoMapper instance (to the controller) when the interface is requested
         public CommandsController(ICommandsRepo repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet] // Endpoint for GET requests
         public ActionResult<IEnumerable<CommandReadDto>> GetAllCommands()
         {
             var commandItems = _repository.GetAllCommands();
 
             // Map the Command model to an IEnumerable of Read DTOs
+            // Ok is a helper method that returns a 200 OK status code
             return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(commandItems));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}")] // Endpoint for GET requests with an ID
         public ActionResult<CommandReadDto> GetCommandByID(int id)
         {
 
@@ -44,6 +49,7 @@ namespace Commands.Controllers
                 // Map the Command model to the Read DTO
                 return Ok(_mapper.Map<CommandReadDto>(commandItem));
             }
+            // NotFound is a helper method that returns a 404 Not Found status code
             return NotFound(new { error = new { code = "404 Not Found", message = "Command not found" } });
 
         }

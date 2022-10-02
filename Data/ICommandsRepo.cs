@@ -4,7 +4,6 @@ using Commands.Models;
 
 namespace Commands.Data
 {
-
     // Seperation of interface from implementation -> decoupling code
     // Interface will contain all of the methods that the repository should provide to the consumer.
     public interface ICommandsRepo

@@ -1,5 +1,6 @@
 namespace Commands.Dtos
 {
+    // Defines the structure of the data that is returned to the client
     public class CommandReadDto
     {
         public int Id { get; set; }
