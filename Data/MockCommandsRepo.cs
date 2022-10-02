@@ -6,6 +6,11 @@ namespace Commands.Data
 {
     public class MockCommandsRepo : ICommandsRepo
     {
+        public void CreateCommand(Command cmd)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Command> GetAllCommands()
         {
             // Initialize a list of commands
@@ -24,5 +29,14 @@ namespace Commands.Data
 
         }
 
+        public bool SaveChanges()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateCommand(Command cmd)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

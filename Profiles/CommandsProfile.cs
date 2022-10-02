@@ -4,7 +4,7 @@ using Commands.Models;
 
 namespace Commands.Profiles
 {
-    // Map models to DTOs
+    // Map Models to DTOs and vice versa
     public class CommandsProfile : Profile
     {
         public CommandsProfile()
@@ -12,6 +12,11 @@ namespace Commands.Profiles
             // Source -> Target
             // Map the Command model to the Read DTO
             CreateMap<Command, CommandReadDto>();
+
+            // Map Create DTO to the Command Model
+            CreateMap<CommandCreateDto, Command>();
+
+            CreateMap<CommandUpdateDto, Command>();
         }
     }
 }

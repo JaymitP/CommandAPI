@@ -39,20 +39,63 @@ namespace Commands.Controllers
             return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(commandItems));
         }
 
-        [HttpGet("{id}")] // Endpoint for GET requests with an ID
-        public ActionResult<CommandReadDto> GetCommandByID(int id)
+        // Endpoint for GET requests with an ID
+        // Endpoint is named so the URI can be referenced in the POST request
+        [HttpGet("{id}", Name = "GetCommandById")]
+        public ActionResult<CommandReadDto> GetCommandById(int id)
         {
 
             var commandItem = _repository.GetCommandById(id);
             if (commandItem == null)
             {
-                // Map the Command model to the Read DTO
-                return Ok(_mapper.Map<CommandReadDto>(commandItem));
+                // NotFound is a helper method that returns a 404 Not Found status code
+                return NotFound(new { error = new { code = "404 Not Found", message = "Command not found" } });
             }
-            // NotFound is a helper method that returns a 404 Not Found status code
-            return NotFound(new { error = new { code = "404 Not Found", message = "Command not found" } });
+            // Map the Command model to the Read DTO
+            return Ok(_mapper.Map<CommandReadDto>(commandItem));
 
         }
+
+        [HttpPost] // Endpoint for POST requests
+        // ActionResult returned since a success status code and the resource created is returned
+        public ActionResult<CommandReadDto> CreateCommand(CommandCreateDto? commandCreateDto)
+        {
+            // Map the Create DTO to the Command model so it can be added to the database
+            var command = _mapper.Map<Command>(commandCreateDto);
+            // Add the command to the db context
+            _repository.CreateCommand(command);
+            // Save the changes to the database, command is updated with the ID
+            _repository.SaveChanges();
+
+            // Map the Command model to the Read DTO
+            var commandReadDto = _mapper.Map<CommandReadDto>(command);
+
+            // CreatedAtRoute is a helper method that returns a 201 Created status code
+            // The route name is used to generate the URI for the resource created -> in accordance with RESTful API design
+            return CreatedAtRoute(nameof(GetCommandById), new { Id = commandReadDto.Id }, commandReadDto);
+        }
+
+        [HttpPut("{id}")] // Endpoint for PUT requests
+        // As per HTTP specification status code 200 and 201 are both applicable for a successful PUT request.
+        public ActionResult UpdateCommand(int id, CommandUpdateDto? commandUpdateDto)
+        {
+            // Get the command to be updated from the database            
+            var commandModelFromRepo = _repository.GetCommandById(id);
+            if (commandModelFromRepo == null)
+            {
+                return NotFound(new { error = new { code = "404 Not Found", message = "Command not found" } });
+            }
+
+            // Map the new command model to the existing command model from the repository
+            // The command model from the repository is updated with the new values
+            _mapper.Map(commandUpdateDto, commandModelFromRepo);
+
+            // Save the changes to the database
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
+
     }
 }
 

@@ -24,5 +24,26 @@ namespace Commands.Data
         {
             return _context.Commands.FirstOrDefault(c => c.Id == id);
         }
+
+        // Changes made to the context are not saved until SaveChanges() is called
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
+        }
+
+        // Add the command to the context
+        public void CreateCommand(Command cmd)
+        {
+            if (cmd == null)
+            {
+                throw new ArgumentNullException(nameof(cmd));
+            }
+            _context.Commands.Add(cmd);
+        }
+
+        public void UpdateCommand(Command cmd)
+        {
+            // Do nothing
+        }
     }
 }
