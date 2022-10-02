@@ -3,6 +3,7 @@ using AutoMapper;
 using Commands.Models;
 using Commands.Data;
 using Commands.Dtos;
+using Microsoft.AspNetCore.JsonPatch;
 
 
 // Controller is used to handle HTTP requests and responses. Also accesses the repository.
@@ -90,12 +91,65 @@ namespace Commands.Controllers
             // The command model from the repository is updated with the new values
             _mapper.Map(commandUpdateDto, commandModelFromRepo);
 
+            // Does nothing since the method is empty. Used since some implementations of the repository may require it
+            _repository.UpdateCommand(commandModelFromRepo);
+
             // Save the changes to the database
             _repository.SaveChanges();
 
             return NoContent();
         }
 
+        [HttpPatch("{id}")] // Endpoint for PATCH requests
+        public ActionResult PartialCommandUpdate(int id, JsonPatchDocument<CommandUpdateDto> patchDoc)
+        {
+            // Get the command to be updated from the database
+            var commandModelFromRepo = _repository.GetCommandById(id);
+            if (commandModelFromRepo == null)
+            {
+                return NotFound(new { error = new { code = "404 Not Found", message = "Command not found" } });
+            }
+
+            // Map the command model from the repository to the Update DTO
+            var commandToPatch = _mapper.Map<CommandUpdateDto>(commandModelFromRepo);
+
+            // Apply the patch document to the Update DTO
+            patchDoc.ApplyTo(commandToPatch, ModelState);
+
+            // Check if the patch document is valid
+            // For instance if the patch document tries to update a property that does not exist
+            if (!TryValidateModel(commandToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            // Map the Update DTO to the command model from the repository
+            _mapper.Map(commandToPatch, commandModelFromRepo);
+
+            // Save the changes to the database
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")] // Endpoint for DELETE requests
+        public ActionResult DeleteCommand(int id)
+        {
+            // Get the command to be deleted from the database
+            var commandModelFromRepo = _repository.GetCommandById(id);
+            if (commandModelFromRepo == null)
+            {
+                return NotFound(new { error = new { code = "404 Not Found", message = "Command not found" } });
+            }
+
+            // Delete the command from the database
+            _repository.DeleteCommand(commandModelFromRepo);
+
+            // Save the changes to the database
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
     }
 }
 
