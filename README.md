@@ -2,9 +2,9 @@
 
 A simple RESTful web API created with **ASP.NET Core 6.0**. The API communicates with a database to provide CLI commands and their descriptions. The API provides 6 (CRUD) endpoints to create, read, update and delete resources.
 
-To accelerate my learning of core functionalities I followed the [.NET Core 3.1 MVC REST API Tutorial](https://www.youtube.com/watch?v=fmvcAzHpsk8) by Les Jackson.\
-I decided to use **.NET Core 6** inside of .NET Core 3.1 since it has improved features and performance.\
-Additionally I used **PostgresSQL** instead of MSSQL since it is more frequently used with Node.js
+To accelerate my learning of core .NET functionalities and good practices, I followed the [.NET Core 3.1 MVC REST API Tutorial](https://www.youtube.com/watch?v=fmvcAzHpsk8) by Les Jackson.\
+I decided to use **.NET Core 6** instead of .NET Core 3.1 since it has improved features and performance.\
+Additionally I used **PostgresSQL** instead of MSSQL since it is more frequently used with Node.js which I am currently learning
 
 - REST principles and HTTP response status codes
 - **Dependency injection**
