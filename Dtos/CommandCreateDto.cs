@@ -9,12 +9,12 @@ namespace Commands.Dtos
         // public int Id { get; set; }
         [Required]
         [MaxLength(250)]
-        public string HowTo { get; set; } = string.Empty;
+        public string HowTo { get; set; } = null!;
 
         [Required]
-        public string Line { get; set; } = string.Empty;
+        public string Line { get; set; } = null!;
 
         [Required]
-        public string Platform { get; set; } = string.Empty;
+        public string Platform { get; set; } = null!;
     }
 }

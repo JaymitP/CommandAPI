@@ -5,11 +5,11 @@ namespace Commands.Dtos
     {
         public int Id { get; set; }
 
-        public string HowTo { get; set; } = string.Empty;
+        public string HowTo { get; set; } = null!;
 
-        public string Line { get; set; } = string.Empty;
+        public string Line { get; set; } = null!;
 
         // Internal data that should not be exposed to the user
-        // public string Platform { get; set; } = string.Empty;
+        // public string Platform { get; set; } = null!;
     }
 }
