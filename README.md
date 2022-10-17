@@ -16,7 +16,7 @@ Additionally I used **PostgresSQL** instead of MSSQL since it is more frequently
 
 ### API Endpoints on Swagger UI:
 
-![image](https://user-images.githubusercontent.com/85488637/193468655-1c4af4b5-974f-4477-ae66-a83c094101bc.png)
+![image](https://user-images.githubusercontent.com/85488637/196298369-0a6460a4-5348-49b2-863c-dde966ea1629.png)
 
 ### Architecture used
 

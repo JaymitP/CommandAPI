@@ -11,7 +11,7 @@ namespace Commands.Controllers
 {
 
     //Route matches URI to each method in the controller class, the [] attribute is substituted with class name during runtime
-    [Route("api/controller")]
+    [Route("api/commands")]
     //Provide default API behavior
     [ApiController]
 
