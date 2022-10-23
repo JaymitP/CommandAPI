@@ -11,7 +11,7 @@ Additionally I used **PostgresSQL** instead of MSSQL since it is more frequently
 - **Entity Framework Core** for DbContext and migrations
 - **Repository design pattern**
 - **PostgresSQL** & **pgAdmin**
-- **Swagger UI** based RESTful Web API specification\
+- **Swagger UI** based RESTful Web API specification
 - **Postman** for testing API endpoints
 
 ### API Endpoints on Swagger UI:
